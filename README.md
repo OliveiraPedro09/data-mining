@@ -1,0 +1,2 @@
+# data-mining
+FATEC Exercises
