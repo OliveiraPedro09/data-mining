@@ -1,0 +1,51 @@
+-- Configurações iniciais
+PRAGMA foreign_keys = ON;
+
+-- Criação das Tabelas
+CREATE TABLE Clientes (
+    ID_Cliente INTEGER PRIMARY KEY,
+    Nome_Cliente TEXT NOT NULL,
+    Email TEXT,
+    Estado TEXT
+);
+
+CREATE TABLE Produtos (
+    ID_Produto INTEGER PRIMARY KEY,
+    Nome_Produto TEXT NOT NULL,
+    Preco REAL
+);
+
+CREATE TABLE Vendas (
+    ID_Venda INTEGER PRIMARY KEY AUTOINCREMENT,
+    Data_Venda TEXT, -- SQLite usa TEXT para datas no formato YYYY-MM-DD
+    ID_Cliente INTEGER,
+    ID_Produto INTEGER,
+    Quantidade INTEGER,
+    FOREIGN KEY (ID_Cliente) REFERENCES Clientes(ID_Cliente),
+    FOREIGN KEY (ID_Produto) REFERENCES Produtos(ID_Produto)
+);
+
+-- Inserindo os Dados (Base Completa de Exemplo)
+INSERT INTO Clientes VALUES (1, 'Ana Silva', 'ana@email.com', 'SP');
+INSERT INTO Clientes VALUES (2, 'Bruno Costa', 'bruno@email.com', 'RJ');
+INSERT INTO Clientes VALUES (3, 'Carla Souza', 'carla@email.com', 'MG');
+INSERT INTO Clientes VALUES (4, 'Diego Santos', 'diego@email.com', 'PR');
+INSERT INTO Clientes VALUES (5, 'Elena Rocha', 'elena@email.com', 'SC');
+
+INSERT INTO Produtos VALUES (1, 'Notebook', 4500.00);
+INSERT INTO Produtos VALUES (2, 'Mouse Wireless', 150.00);
+INSERT INTO Produtos VALUES (3, 'Teclado Mecanico', 350.00);
+INSERT INTO Produtos VALUES (4, 'Monitor 27p', 1200.00);
+INSERT INTO Produtos VALUES (5, 'Headset Gamer', 250.00);
+
+INSERT INTO Vendas (Data_Venda, ID_Cliente, ID_Produto, Quantidade) VALUES 
+('2023-10-01', 1, 1, 1),
+('2023-10-01', 2, 2, 2),
+('2023-10-02', 3, 4, 1),
+('2023-10-03', 1, 3, 1),
+('2023-10-04', 4, 1, 1),
+('2023-10-05', 5, 5, 2),
+('2023-10-05', 2, 3, 1),
+('2023-10-06', 3, 2, 3),
+('2023-10-07', 4, 4, 1),
+('2023-10-08', 5, 1, 1);
